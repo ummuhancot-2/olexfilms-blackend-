@@ -26,7 +26,7 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // default rol
-        user.setRole(Role.USER);
+        user.setRole(Role.ROLE_USER);
 
         // aktif kullanıcı
         user.setEnabled(true);

@@ -24,19 +24,21 @@ public class JwtUtils {
         return Keys.hmacShaKeyFor(jwtSecret.getBytes());
     }
 
+    // 🔥 TOKEN ÜRETİMİ (SADE)
     public String generateJwtToken(Authentication authentication) {
 
-        UserDetailsImpl user = (UserDetailsImpl) authentication.getPrincipal();
+        UserDetailsImpl user =
+                (UserDetailsImpl) authentication.getPrincipal();
 
         return Jwts.builder()
-                .setSubject(user.getEmail())
-                .claim("role", user.getAuthorities()) // 👈 önemli
+                .setSubject(user.getEmail()) // sadece identity
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
-                .signWith(getSigningKey(), SignatureAlgorithm.HS256) // 👈 SILINDİ (HS512 → HS256)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
+    // 🔥 EMAIL ÇEKME
     public String getEmailFromToken(String token) {
 
         return Jwts.parserBuilder()
@@ -47,6 +49,7 @@ public class JwtUtils {
                 .getSubject();
     }
 
+    // 🔥 TOKEN DOĞRULAMA
     public boolean validateJwtToken(String token) {
         try {
             Jwts.parserBuilder()

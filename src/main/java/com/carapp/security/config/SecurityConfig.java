@@ -50,18 +50,18 @@ public class SecurityConfig {
 
                         // PRODUCT GÖRME → USER + ADMIN
                         .requestMatchers(HttpMethod.GET, "/api/products/**")
-                        .hasAnyRole("USER", "ADMIN")
+                        .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
 
                         // PRODUCT EKLEME → USER + ADMIN
                         .requestMatchers(HttpMethod.POST, "/api/products/**")
-                        .hasAnyRole("USER", "ADMIN")
+                        .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
 
                         // PRODUCT GÜNCELLEME → USER  ADMIN
                         .requestMatchers(HttpMethod.PUT, "/api/products/**")
-                        .hasAnyRole("USER", "ADMIN")
+                        .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                         // PRODUCT SİLME → SADECE ADMIN
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**")
-                        .hasAnyRole("USER", "ADMIN")
+                        .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
 
                         // USER İŞLEMLERİ → SADECE ADMIN
                         .requestMatchers("/api/users/**")

@@ -25,7 +25,7 @@ public class AdminInitializer implements CommandLineRunner {
         User admin = new User();
         admin.setEmail("admin@carapp.com");
         admin.setPassword(passwordEncoder.encode("Admin123*"));
-        admin.setRole(Role.ADMIN);
+        admin.setRole(Role.ROLE_ADMIN);
         admin.setEnabled(true);
 
 
