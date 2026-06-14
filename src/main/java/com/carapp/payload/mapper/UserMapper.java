@@ -5,6 +5,8 @@ import com.carapp.entity.User;
 import com.carapp.payload.request.UserRequest;
 import com.carapp.payload.response.UserResponse;
 
+import java.util.List;
+
 public class UserMapper {
 
     public static User toEntity(UserRequest request) {
@@ -12,6 +14,7 @@ public class UserMapper {
                 .email(request.getEmail())
                 .password(request.getPassword())
                 .role(request.getRole())
+                .enabled(true)
                 .build();
     }
 
@@ -22,4 +25,13 @@ public class UserMapper {
                 .role(user.getRole())
                 .build();
     }
+
+    public record PageResponse<T>(
+            List<T> content,
+            int page,
+            int size,
+            long totalElements,
+            int totalPages
+    ) {}
+
 }
